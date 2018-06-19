@@ -1,0 +1,161 @@
+/*!
+ * A layout framework with flex
+ * bq-hentai | 11/20/2017
+ */
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+@grid-columns: 12;
+@grid-gutter-width: 30px;
+
+.make-container() {
+  width: 100%;
+  padding-right: @grid-gutter-width / 2;
+  padding-left: @grid-gutter-width / 2;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container {
+  .make-container()
+}
+
+/* margin为负值，用于抵消 `container` 中的 `padding` */
+.make-row() {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -(@grid-gutter-width / 2);
+  margin-right: -(@grid-gutter-width / 2);
+}
+
+.row {
+  .make-row()
+}
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.col-ready() {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: (@grid-gutter-width / 2);
+  padding-left: (@grid-gutter-width / 2);
+}
+
+.col {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  .col-ready();
+}
+
+.make-col-auto() {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: none;
+  .col-ready();
+}
+
+.col-auto {
+  .make-col-auto();
+}
+
+.make-col(@n: 1) when (@n =< @grid-columns) {
+  .col-@{n} {
+    .col-ready();
+    flex: 0 0 percentage(@n / @grid-columns);
+    max-width: percentage(@n / @grid-columns);
+  }
+  .make-col(@n + 1);
+}
+
+.make-col();
+
+.make-offset(@n: 1) when (@n =< (@grid-columns - 1)) {
+  .col-offset-@{n} {
+    margin-left: percentage(@n / @grid-columns);
+  }
+  .make-offset(@n + 1)
+}
+
+.make-offset();
+
+.make-order(@n: 0) when (@n =<@grid-columns) {
+  .order-@{n} {
+    order: @n;
+  }
+  .make-order(@n + 1);
+}
+
+.make-order();
+
+.order-first {
+  order: -1;
+}
+
+.order-last {
+  order: (@grid-columns + 1);
+}
+
+/* utils */
+
+.simple-kv (@k, @v) when (@v = start) { @{k}: ~"flex-@{v}"; }
+
+.simple-kv (@k, @v) when (@v = end) { @{k}: ~"flex-@{v}"; }
+
+.simple-kv (@k, @v) when (@v = between) { @{k}: ~"space-@{v}"; }
+
+.simple-kv (@k, @v) when (@v = around) { @{k}: ~"space-@{v}"; }
+
+.simple-kv (@k, @v) when (default()) { @{k}: @v; }
+
+@keys: flex-direction,
+       flex-wrap,
+       justify-content,
+       align-items,
+       align-content,
+       align-self;
+
+@values: row column row-reverse column-reverse,
+         wrap nowrap wrap-reverse,
+         start end center between around,
+         start end center baseline stretch,
+         start end center between around stretch,
+         start end center between around stretch;
+
+.spread-value (@key, @value, @index: 1) when(@index <= length(@value)) {
+  @v: extract(@value, @index);
+
+  .@{key}-@{v} {
+    .simple-kv(@key, @v);
+  }
+
+  .spread-value(@key, @value, @index + 1);
+}
+
+.spread-keys (@keys: @keys, @index: 1) when (@index <= length(@keys)) {
+  @key: extract(@keys, @index);
+  @value: extract(@values, @index);
+  .spread-value(@key, @value);
+
+  .spread-keys(@keys, @index + 1);
+}
+
+.spread-keys(@keys);

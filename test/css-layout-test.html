@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>test</title>
-  <link rel="stylesheet" href="css-layout.css">
+  <link rel="stylesheet" href="../dist/index.css">
   <style>
-    .container .row div {
+    .gs-container .gs-row div {
       height: 20px;
       background: #83b7f7;
       border: 1px solid #ccc;
@@ -22,53 +22,53 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-2 order-2">col-2 order-2</div>
-      <div class="col-2 col-offset-3 order-3">col-2 col-offset-3 order-3</div>
-      <div class="col-2 order-1">col-2 order-1</div>
+  <div class="gs-container">
+    <div class="gs-row">
+      <div class="gs-col-2 gs-order-2">col-2 order-2</div>
+      <div class="gs-col-2 gs-col-offset-3 gs-order-3">col-2 col-offset-3 order-3</div>
+      <div class="gs-col-2 gs-order-1">col-2 order-1</div>
     </div>
-    <div class="row">
-      <div class="col">col</div>
-      <div class="col">col</div>
-      <div class="col">col</div>
+    <div class="gs-row">
+      <div class="gs-col">col</div>
+      <div class="gs-col">col</div>
+      <div class="gs-col">col</div>
     </div>
-    <div class="row no-gutters">
-      <div class="col">no-gutters</div>
-      <div class="col">no-gutters</div>
-      <div class="col">no-gutters</div>
+    <div class="gs-row gs-no-gutters">
+      <div class="gs-col">no-gutters</div>
+      <div class="gs-col">no-gutters</div>
+      <div class="gs-col">no-gutters</div>
     </div>
-    <div class="row justify-content-between">
-      <div class="col-2">justify-content-between</div>
-      <div class="col-5">justify-content-between</div>
+    <div class="gs-row gs-justify-content-between">
+      <div class="gs-col-2">justify-content-between</div>
+      <div class="gs-col-5">justify-content-between</div>
     </div>
-    <div class="row">
-      <div class="col-2">col-2</div>
-      <div class="col">col</div>
-      <div class="col-2">col-2</div>
+    <div class="gs-row">
+      <div class="gs-col-2">col-2</div>
+      <div class="gs-col">col</div>
+      <div class="gs-col-2">col-2</div>
     </div>
-    <div class="row flex-column">
-      <div class="col-2">flex-column 1</div>
-      <div class="col-2">flex-column 2</div>
+    <div class="gs-row gs-flex-direction-column">
+      <div class="gs-col-2">flex-column 1</div>
+      <div class="gs-col-2">flex-column 2</div>
     </div>
-    <div class="row flex-wrap-reverse">
-      <div class="col-6">flex-wrap-reverse 1</div>
-      <div class="col-6">flex-wrap-reverse 2</div>
-      <div class="col-6">flex-wrap-reverse 3</div>
+    <div class="gs-row flex-wrap-reverse">
+      <div class="gs-col-6">flex-wrap-reverse 1</div>
+      <div class="gs-col-6">flex-wrap-reverse 2</div>
+      <div class="gs-col-6">flex-wrap-reverse 3</div>
     </div>
-    <div class="row align-items-center" style="height: 50px; background: #a9a1a1;">
-      <div class="col-6">align-items-center 1</div>
-      <div class="col-6">align-items-center 2</div>
+    <div class="gs-row gs-align-items-center" style="height: 50px; background: #a9a1a1;">
+      <div class="gs-col-6">align-items-center 1</div>
+      <div class="gs-col-6">align-items-center 2</div>
     </div>
-    <div class="row align-content-around" style="height: 60px; background: #a9a1a1; margin-top: 5px;">
-      <div class="col-6">align-content-around 1</div>
-      <div class="col-6">align-content-around 2</div>
-      <div class="col-6">align-content-around 3</div>
+    <div class="gs-row gs-align-content-around" style="height: 60px; background: #a9a1a1; margin-top: 5px;">
+      <div class="gs-col-6">align-content-around 1</div>
+      <div class="gs-col-6">align-content-around 2</div>
+      <div class="gs-col-6">align-content-around 3</div>
     </div>
-    <div class="row align-items-center" style="height: 50px; background: #a9a1a1; margin-top: 5px;">
-      <div class="col-3">align-items-center 1</div>
-      <div class="col-3">align-items-center 2</div>
-      <div class="col-3 align-self-end">align-self-end 3</div>
+    <div class="gs-row gs-align-items-center" style="height: 50px; background: #a9a1a1; margin-top: 5px;">
+      <div class="gs-col-3">align-items-center 1</div>
+      <div class="gs-col-3">align-items-center 2</div>
+      <div class="gs-col-3 gs-align-self-end">align-self-end 3</div>
     </div>
   </div>
 </body>

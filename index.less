@@ -1,7 +1,9 @@
 /*!
- * A layout framework with flex
+ * A pure css grid system with flex
  * bq-hentai | 11/20/2017
  */
+
+@lib-prefix: gs;
 
 html {
   box-sizing: border-box;
@@ -13,7 +15,7 @@ html {
   box-sizing: inherit;
 }
 
-@grid-columns: 12;
+@grid-columns: 24;
 @grid-gutter-width: 30px;
 
 .make-container() {
@@ -24,7 +26,7 @@ html {
   margin-left: auto;
 }
 
-.container {
+.@{lib-prefix}-container {
   .make-container()
 }
 
@@ -36,16 +38,16 @@ html {
   margin-right: -(@grid-gutter-width / 2);
 }
 
-.row {
+.@{lib-prefix}-row {
   .make-row()
 }
 
-.no-gutters {
+.@{lib-prefix}-no-gutters {
   margin-right: 0;
   margin-left: 0;
 
-  > .col,
-  > [class*="col-"] {
+  > .@{lib-prefix}-col,
+  > [class*="@{lib-prefix}col-"] {
     padding-right: 0;
     padding-left: 0;
   }
@@ -59,7 +61,7 @@ html {
   padding-left: (@grid-gutter-width / 2);
 }
 
-.col {
+.@{lib-prefix}-col {
   flex-basis: 0;
   flex-grow: 1;
   max-width: 100%;
@@ -73,12 +75,12 @@ html {
   .col-ready();
 }
 
-.col-auto {
+.@{lib-prefix}-col-auto {
   .make-col-auto();
 }
 
 .make-col(@n: 1) when (@n =< @grid-columns) {
-  .col-@{n} {
+  .@{lib-prefix}-col-@{n} {
     .col-ready();
     flex: 0 0 percentage(@n / @grid-columns);
     max-width: percentage(@n / @grid-columns);
@@ -89,7 +91,7 @@ html {
 .make-col();
 
 .make-offset(@n: 1) when (@n =< (@grid-columns - 1)) {
-  .col-offset-@{n} {
+  .@{lib-prefix}-col-offset-@{n} {
     margin-left: percentage(@n / @grid-columns);
   }
   .make-offset(@n + 1)
@@ -98,7 +100,7 @@ html {
 .make-offset();
 
 .make-order(@n: 0) when (@n =<@grid-columns) {
-  .order-@{n} {
+  .@{lib-prefix}-order-@{n} {
     order: @n;
   }
   .make-order(@n + 1);
@@ -106,11 +108,11 @@ html {
 
 .make-order();
 
-.order-first {
+.@{lib-prefix}-order-first {
   order: -1;
 }
 
-.order-last {
+.@{lib-prefix}-order-last {
   order: (@grid-columns + 1);
 }
 
@@ -143,7 +145,7 @@ html {
 .spread-value (@key, @value, @index: 1) when(@index <= length(@value)) {
   @v: extract(@value, @index);
 
-  .@{key}-@{v} {
+  .@{lib-prefix}-@{key}-@{v} {
     .simple-kv(@key, @v);
   }
 

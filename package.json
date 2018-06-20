@@ -24,7 +24,6 @@
   "devDependencies": {
     "autoprefix": "^1.0.1",
     "less": "^3.0.4",
-    "less-plugin-autoprefix": "^1.5.1",
     "postcss": "^6.0.22"
   },
   "browserslist": [

@@ -4,8 +4,11 @@ A simple layout via css, use flex, heavily inspired by [Bootstrap](https://getbo
 
 ## Build
 
-```shell
-$ npm run build
+```bash
+
+# build the lib
+npm run build
+
 ```
 
 ## NOTICE
